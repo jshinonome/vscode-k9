@@ -12,16 +12,22 @@
     "engines": {
         "vscode": "^1.52.0"
     },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/jshinonome/vscode-k9.git"
+    },
     "categories": [
         "Programming Languages"
     ],
+    "icon": "icon.png",
     "contributes": {
         "languages": [
             {
                 "id": "k",
                 "aliases": [
                     "k9",
-                    "k"
+                    "k",
+                    "shakti"
                 ],
                 "extensions": [
                     ".k"

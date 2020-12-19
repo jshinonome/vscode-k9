@@ -1,5 +1,9 @@
 # shakti for vscode
 
+[![](https://img.shields.io/visual-studio-marketplace/v/jshinonome.vscode-k9)](https://marketplace.visualstudio.com/items?itemName=jshinonome.vscode-k9)
+[![](https://vsmarketplacebadge.apphb.com/downloads/jshinonome.vscode-k9.svg?color=blue&style=flat)](https://marketplace.visualstudio.com/items?itemName=jshinonome.vscode-k9)
+[![](https://vsmarketplacebadge.apphb.com/installs/jshinonome.vscode-k9.svg?color=success&style=flat)](https://marketplace.visualstudio.com/items?itemName=jshinonome.vscode-k9)
+
 This extension provides [k9-shakti](https://shakti.sh/) language support.
 
 ## Features
