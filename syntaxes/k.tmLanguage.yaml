@@ -1,0 +1,140 @@
+name: k9 language
+scopeName: source.k
+patterns:
+  # DO NOT change orders
+  - include: "#comments"
+  - include: "#strings"
+  - include: "#constants"
+  - include: "#keywords"
+  - include: "#function"
+  - include: "#invalids"
+repository:
+  comments:
+    patterns:
+      - name: comment.block.k
+        begin: ^/\s*$
+        end: ^\\\s*$
+      - name: comment.block.eof.k
+        begin: ^\\\s*$
+        end: \z
+      - begin: (^(//?)(?:\s*)(?:(@\w+)(?:[^.\w]+([.\w]+)(?:[^.\w]+(\w*))?)?)?)
+        beginCaptures:
+          1: { name: comment.line.slash.k }
+          2: { name: punctuation.definition.comment.k }
+          3: { name: storage.type.class.k }
+          4: { name: variable.parameter.k }
+          5: { name: entity.name.type }
+        end: (?=^)
+        contentName: comment.line.k
+      - name: comment.line.inline.k
+        match: \s/.*
+  strings:
+    patterns:
+      - begin: '"'
+        beginCaptures:
+          0: { name: punctuation.definition.string.begin.k }
+        end: '"'
+        endCaptures:
+          0: { name: punctuation.definition.string.end.k }
+        name: string.kuoted.double.k
+        patterns:
+          - name: constant.character.escape.k
+            match: \\(\\|n|t|r|")
+  invalids:
+    patterns:
+      - name: invalid.illegal.bracket.k
+        match: ^[}\]\)].*
+  constants:
+    patterns:
+      - name: support.function.name.k
+        match: '`(js|csv|nv)(?=[\?\s])'
+      - name: support.constant.time.k
+        match: \.z\.[mdhrstuv]\b
+      - name: support.function.io.k
+        match: \b(0:|1:|2:|3:|4:|5:)
+      - name: constant.language.null.k
+        match: \b0[Nn]\b
+      - name: constant.language.boolean.k
+        match: \b[01]+b\b
+      - name: constant.language.infinity.k
+        match: \b0[wW]\b
+      - name: constant.other.date
+        match: \b([12]\d{3}\.(0[1-9]|1[0-2])\.(0[1-9]|[12]\d|3[01]))\b
+      - name: constant.other.date.time.k
+        match: \b([01]\d|2[0-3])(:([0-5]\d)(:([0-5]\d(\.\d{0,9})?))?)\b
+      - name: constant.other.timestamp.datetime.k
+        match: \b([12]\d{3}\.(0[1-9]|1[0-2])\.(0[1-9]|[12]\d|3[01]))(z|T|Tz|T(([01]\d|2[0-3])(:([0-5]\d)(:([0-5]\d(\.\d{0,3})?))?)?z?))\b
+      - name: constant.numeric.guid.k
+        match: \b([\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12})\b
+      - name: constant.numeric.decimal.k
+        match: |-
+          (?x)-?(?:
+            (?:\b[0-9]+(\.)[0-9]*e-?[0-9]+\b)|    # 1.1e+3
+            (?:\b[0-9]+(\.)e-?[0-9]+\b)|          # 1.e+3
+            (?:\B(\.)[0-9]+e-?[0-9]+\b)|          # .1e+3
+            (?:\b[0-9]+e-?[0-9]+\b)|              # 1e+3
+            (?:\b[0-9]+(\.)[0-9]*\b)|             # 1.1
+            (?:\b[0-9]+(\.)\B)|                   # 1.
+            (?:\B(\.)[0-9]+\b)|                   # .1
+            (?:\b[0-9]+[hij]?\b(?!\.))            # 1hij
+          )
+      - name: support.type.k
+        match: '`[cnifdt](?=[\$\s])'
+      - name: constant.other.name.k
+        match: '`(:[a-zA-Z\d_\.:/]*|[a-zA-Z\d_\.:]*)'
+      - name: constant.other.cmd.k
+        match: ^\\.+
+  keywords:
+    patterns:
+      - name: keyword.operator.k
+        match: \b(abs|sin|cos|exp|log|sqr|sqrt|div|mod|bar|rank|top|freq|bin|within|in|msum|mavg|key|unkey|meta|prm|cmb|sums|deltas|count|first|last|sum|min|max|avg|var|dev|med|key|unkey|meta|in|bin|within)\b
+      - name: keyword.control.k
+        match: \$(?=\[)
+      - name: keyword.assign.k
+        match: ':'
+      - name: keyword.iterator.k
+        match: (':?|\\:?|/:?)
+      - name: keyword.other.DML.k
+        match: \b(select|update|delete|from|where)\b
+      - name: keyword.operator.comparison.k
+        match: (=|<=?|>=?|~|<>)
+      - include: "#variables"
+      - name: keyword.operator.k
+        match: '[\@\.\$!?+\-\*%|&#^,]'
+  variables:
+    patterns:
+      # gloabl function/variables
+      - name: entity.name.function.k
+        match: (?<![a-zA-Z\d])\.[a-zA-Z][a-zA-Z\d_]*(\.[a-zA-Z\d_]+)*
+  function:
+    patterns:
+      - begin: "{"
+        beginCaptures:
+          0: { name: punctuation.definition.function.body.begin.k }
+        end: "}"
+        endCaptures:
+          0: { name: punctuation.definition.function.body.end.k }
+        patterns:
+          - include: "#function_param"
+          - include: "#comments"
+          - include: "#strings"
+          - include: "#constants"
+          - include: "#keywords"
+          - include: "#invalids"
+          - include: "#function"
+          - name: entity.name.variable.parameter.k
+            match: \b(x|y|z)\b
+  function_param:
+    patterns:
+      - name: meta.parameters.k
+        begin: (?<={)\[
+        beginCaptures:
+          0: { name: punctuation.definition.parameters.begin.k }
+        end: "]"
+        endCaptures:
+          0: { name: punctuation.definition.parameters.end.k }
+        patterns:
+          - name: variable.parameter.k
+            match: \b[a-zA-Z][a-zA-Z\d_]*
+          - name: punctuation.separator.parameter.k
+            match: ";"

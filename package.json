@@ -1,0 +1,38 @@
+{
+    "name": "vscode-k9",
+    "displayName": "shakti",
+    "description": "shakti(k9) language support for vscode",
+    "author": {
+        "name": "Jo Shinonome",
+        "email": "jshinonome@gmail.com"
+    },
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.52.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [
+            {
+                "id": "k",
+                "aliases": [
+                    "k9",
+                    "k"
+                ],
+                "extensions": [
+                    ".k"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "k",
+                "scopeName": "source.k",
+                "path": "./syntaxes/k.tmLanguage.json"
+            }
+        ]
+    }
+}
