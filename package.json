@@ -6,7 +6,7 @@
         "name": "Jo Shinonome",
         "email": "jshinonome@gmail.com"
     },
-    "version": "0.0.1",
+    "version": "0.0.2",
     "homepage": "https://github.com/jshinonome/vscode-k9",
     "publisher": "jshinonome",
     "engines": {
