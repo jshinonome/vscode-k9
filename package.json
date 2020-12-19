@@ -7,6 +7,8 @@
         "email": "jshinonome@gmail.com"
     },
     "version": "0.0.1",
+    "homepage": "https://github.com/jshinonome/vscode-k9",
+    "publisher": "jshinonome",
     "engines": {
         "vscode": "^1.52.0"
     },
