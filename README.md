@@ -1,10 +1,10 @@
-# shakti for vscode
+# vscode extension for shakti-k9
 
 [![](https://img.shields.io/visual-studio-marketplace/v/jshinonome.vscode-k9)](https://marketplace.visualstudio.com/items?itemName=jshinonome.vscode-k9)
 [![](https://vsmarketplacebadge.apphb.com/downloads/jshinonome.vscode-k9.svg?color=blue&style=flat)](https://marketplace.visualstudio.com/items?itemName=jshinonome.vscode-k9)
 [![](https://vsmarketplacebadge.apphb.com/installs/jshinonome.vscode-k9.svg?color=success&style=flat)](https://marketplace.visualstudio.com/items?itemName=jshinonome.vscode-k9)
 
-This extension provides [k9-shakti](https://shakti.sh/) language support.
+This extension provides [shakti-k9](https://shakti.sh/) language support.
 
 ## Features
 
@@ -22,9 +22,14 @@ This extension provides [k9-shakti](https://shakti.sh/) language support.
     -   document symbol (Ctrl+Shift+O)
     -   completion
         -   identifiers defined in code
-        -   identifiers defined on kdb+ process
-        -   column names define on kdb+ process
+        -   identifiers defined on shakti process
+        -   column names define on shakti process
     -   completion resolve
     -   signature help
 
 See the [change log](https://github.com/jshinonome/vscode-k9/blob/master/CHANGELOG.md).
+
+## Shortcuts
+
+-   <kbd>ctrl</kbd>+<kbd>shift</kbd>+<kbd>enter</kbd>: send current line to active terminal
+-   <kbd>ctrl</kbd>+<kbd>shift</kbd>+<kbd>e</kbd>: send selected line(s) to active terminal
