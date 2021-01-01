@@ -107,39 +107,39 @@
 				},
 				{
 					"name": "support.function.io.k",
-					"match": "\\b(0:|1:|2:|3:|4:|5:)"
+					"match": "(?<=\\b|_)(0:|1:|2:|3:|4:|5:)"
 				},
 				{
 					"name": "constant.language.null.k",
-					"match": "\\b0[Nn]\\b"
+					"match": "(?<=\\b|_)0[nN]"
 				},
 				{
 					"name": "constant.language.boolean.k",
-					"match": "\\b[01]+b\\b"
+					"match": "(?<=\\b|_)[01]+b"
 				},
 				{
 					"name": "constant.language.infinity.k",
-					"match": "\\b0[wW]\\b"
+					"match": "(?<=\\b|_)-?0[wW]"
 				},
 				{
 					"name": "constant.other.date",
-					"match": "\\b([12]\\d{3}\\.(0[1-9]|1[0-2])\\.(0[1-9]|[12]\\d|3[01]))\\b"
+					"match": "(?<=\\b|_)([12]\\d{3}\\.(0[1-9]|1[0-2])\\.(0[1-9]|[12]\\d|3[01]))"
 				},
 				{
 					"name": "constant.other.date.time.k",
-					"match": "\\b([01]\\d|2[0-3])(:([0-5]\\d)(:([0-5]\\d(\\.\\d{0,9})?))?)\\b"
+					"match": "(?<=\\b|_)([01]\\d|2[0-3])(:([0-5]\\d)(:([0-5]\\d(\\.\\d{0,9})?))?)"
 				},
 				{
 					"name": "constant.other.timestamp.datetime.k",
-					"match": "\\b([12]\\d{3}\\.(0[1-9]|1[0-2])\\.(0[1-9]|[12]\\d|3[01]))(z|T|Tz|T(([01]\\d|2[0-3])(:([0-5]\\d)(:([0-5]\\d(\\.\\d{0,3})?))?)?z?))\\b"
+					"match": "(?<=\\b|_)([12]\\d{3}\\.(0[1-9]|1[0-2])\\.(0[1-9]|[12]\\d|3[01]))(z|T|Tz|T(([01]\\d|2[0-3])(:([0-5]\\d)(:([0-5]\\d(\\.\\d{0,3})?))?)?z?))"
 				},
 				{
 					"name": "constant.numeric.guid.k",
-					"match": "\\b([\\da-f]{8}-[\\da-f]{4}-[\\da-f]{4}-[\\da-f]{4}-[\\da-f]{12})\\b"
+					"match": "(?<=\\b|_)([\\da-f]{8}-[\\da-f]{4}-[\\da-f]{4}-[\\da-f]{4}-[\\da-f]{12})"
 				},
 				{
 					"name": "constant.numeric.decimal.k",
-					"match": "(?x)-?(?:\n  (?:\\b[0-9]+(\\.)[0-9]*e-?[0-9]+\\b)|    # 1.1e+3\n  (?:\\b[0-9]+(\\.)e-?[0-9]+\\b)|          # 1.e+3\n  (?:\\B(\\.)[0-9]+e-?[0-9]+\\b)|          # .1e+3\n  (?:\\b[0-9]+e-?[0-9]+\\b)|              # 1e+3\n  (?:\\b[0-9]+(\\.)[0-9]*\\b)|             # 1.1\n  (?:\\b[0-9]+(\\.)\\B)|                   # 1.\n  (?:\\B(\\.)[0-9]+\\b)|                   # .1\n  (?:\\b[0-9]+[hij]?\\b(?!\\.))            # 1hij\n)"
+					"match": "(?x)-?(?:\n  (?:(?<=\\b|_)[0-9]+(\\.)[0-9]*e-?[0-9]+)|   # 1.1e3\n  (?:(?<=\\b|_)[0-9]+(\\.)e-?[0-9]+)|         # 1.e3\n  (?:(?<=\\B|_)(\\.)[0-9]+e-?[0-9]+)|                # .1e3\n  (?:(?<=\\b|_)[0-9]+e-?[0-9]+)|             # 1e3\n  (?:(?<=\\b|_)[0-9]+(\\.)[0-9]*)|            # 1.1\n  (?:(?<=\\B|_)(\\.)[0-9]+)|                         # .1\n  (?:(?<=\\b|_)[0-9]+[ghij]?)                # 1ghij\n)"
 				},
 				{
 					"name": "support.type.k",
@@ -147,7 +147,7 @@
 				},
 				{
 					"name": "constant.other.name.k",
-					"match": "`(:[a-zA-Z\\d_\\.:/]*|[a-zA-Z\\d_\\.:]*)"
+					"match": "`(:[a-zA-Z\\d_\\.:/]*|[a-zA-Z\\d\\.:]*)"
 				},
 				{
 					"name": "constant.other.cmd.k",
@@ -159,7 +159,7 @@
 			"patterns": [
 				{
 					"name": "keyword.operator.k",
-					"match": "\\b(abs|sin|cos|exp|log|sqr|sqrt|div|mod|bar|rank|top|freq|bin|within|in|msum|mavg|key|unkey|meta|prm|cmb|sums|deltas|count|first|last|sum|min|max|avg|var|dev|med|key|unkey|meta|in|bin|within)\\b"
+					"match": "(?<=\\b|_)(abs|sin|cos|exp|log|sqr|sqrt|div|mod|bar|rank|top|freq|bin|within|in|msum|mavg|key|unkey|meta|prm|cmb|sums|deltas|count|first|last|sum|min|max|avg|var|dev|med|key|unkey|meta|in|bin|within|rand|differ)\\b"
 				},
 				{
 					"name": "keyword.control.k",
@@ -175,18 +175,18 @@
 				},
 				{
 					"name": "keyword.other.DML.k",
-					"match": "\\b(select|update|delete|from|where)\\b"
+					"match": "(?<=\\b|_)(select|update|delete|from|where|by)\\b"
 				},
 				{
 					"name": "keyword.operator.comparison.k",
-					"match": "(=|<=?|>=?|~|<>)"
+					"match": "(=|<|>|~)"
 				},
 				{
 					"include": "#variables"
 				},
 				{
 					"name": "keyword.operator.k",
-					"match": "[\\@\\.\\$!?+\\-\\*%|&#^,]"
+					"match": "[\\@\\.\\$!?+\\-\\*%|&#^,_]"
 				}
 			]
 		},
@@ -194,7 +194,7 @@
 			"patterns": [
 				{
 					"name": "entity.name.function.k",
-					"match": "(?<![a-zA-Z\\d])\\.[a-zA-Z][a-zA-Z\\d_]*(\\.[a-zA-Z\\d_]+)*"
+					"match": "(?<![a-zA-Z\\d])\\.[a-zA-Z][a-zA-Z\\d]*(\\.[a-zA-Z\\d]+)*"
 				}
 			]
 		},
@@ -215,9 +215,6 @@
 					},
 					"patterns": [
 						{
-							"include": "#function_param"
-						},
-						{
 							"include": "#comments"
 						},
 						{
@@ -237,36 +234,7 @@
 						},
 						{
 							"name": "entity.name.variable.parameter.k",
-							"match": "\\b(x|y|z)\\b"
-						}
-					]
-				}
-			]
-		},
-		"function_param": {
-			"patterns": [
-				{
-					"name": "meta.parameters.k",
-					"begin": "(?<={)\\[",
-					"beginCaptures": {
-						"0": {
-							"name": "punctuation.definition.parameters.begin.k"
-						}
-					},
-					"end": "]",
-					"endCaptures": {
-						"0": {
-							"name": "punctuation.definition.parameters.end.k"
-						}
-					},
-					"patterns": [
-						{
-							"name": "variable.parameter.k",
-							"match": "\\b[a-zA-Z][a-zA-Z\\d_]*"
-						},
-						{
-							"name": "punctuation.separator.parameter.k",
-							"match": ";"
+							"match": "(?<=\\b|_)(x|y|z)(?=\\b|_)"
 						}
 					]
 				}

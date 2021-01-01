@@ -2,6 +2,12 @@
 
 All notable changes to the "vscode-k9" extension will be documented in this file.
 
+## 0.0.4
+
+### added
+
+-   underscore as a operator
+
 ## 0.0.3
 
 ### added
