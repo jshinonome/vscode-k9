@@ -2,6 +2,12 @@
 
 All notable changes to the "vscode-k9" extension will be documented in this file.
 
+## 0.0.5
+
+### fixed
+
+-   regex for temporal type
+
 ## 0.0.4
 
 ### added
