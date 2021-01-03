@@ -31,12 +31,12 @@ See the [change log](https://github.com/jshinonome/vscode-k9/blob/master/CHANGEL
 -   To configure globally, type <kbd>ctrl</kbd>+<kbd>,</kbd> to open Settings and change the following values.
 -   To configure for workspace, type <kbd>ctrl</kbd>+<kbd>shift</kbd>+<kbd>p</kbd>, call `Preferences: Open Workspace Settings` and change the following values.
 
-| configuration                      | type   | default value                    | description                                |
-| ---------------------------------- | ------ | -------------------------------- | ------------------------------------------ |
-| k-server.sourceFiles.globsPattern  | array  | `["**/src/**/*.k"]`              | source folder to be included               |
-| k-server.sourceFiles.ignorePattern | array  | `["**/build","**/node_modules"]` | folder to be excluded                      |
-| k-client.terminal.qBinary          | string | `k`                              | k executable file or full path             |
-| k-client.terminal.envPath          | string | ``                               | environment file relative or absolute path |
+| configuration                       | type   | default value                    | description                                |
+| ----------------------------------- | ------ | -------------------------------- | ------------------------------------------ |
+| k9-server.sourceFiles.globsPattern  | array  | `["**/src/**/*.k"]`              | source folder to be included               |
+| k9-server.sourceFiles.ignorePattern | array  | `["**/build","**/node_modules"]` | folder to be excluded                      |
+| k9-client.terminal.qBinary          | string | `k`                              | k executable file or full path             |
+| k9-client.terminal.envPath          | string | ``                               | environment file relative or absolute path |
 
 ## Shortcuts
 

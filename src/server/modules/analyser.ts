@@ -235,7 +235,7 @@ export default class Analyzer {
                 .on('end', () => {
                     if (qSrcFiles.length == 0) {
                         this.connection.window.showWarningMessage(
-                            `Failed to find any q source files using the glob "${globsPattern}". Some feature will not be available.`,
+                            `Failed to find any source files using the glob "${globsPattern}". Some feature will not be available.`,
                         );
                     }
 
