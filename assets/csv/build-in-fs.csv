@@ -1,0 +1,46 @@
+label,detail,documentation,kind
+.z.d,UTC date,.z.d,6
+.z.h,UTC hour,.z.h,6
+.z.m,UTC month,.z.m,6
+.z.r,UTC minute,.z.r,6
+.z.s,UTC second,.z.s,6
+.z.t,UTC time,.z.t,6
+.z.u,UTC microsecond,.z.u,6
+.z.v,UTC nanosecond,.z.v,6
+abs,absolute value,abs[numbers],2
+avg,arithmetic mean,avg[numbers],2
+bar,round down to multiples,xbar[base;numbers|termporals],2
+bin,binary search(<=x),bin[numbers!;numbers],2
+cmb,combination,cmb[pick up number;numbers],2
+cos,cosine,cos[numbers],2
+count,count items,count[any],2
+deltas,difference between list items,deltas[<default;>numbers or temporals],2
+dev,deviation,dev[numbers],2
+differ,find changes by comparing to next,differ[list],2
+div,integer division,div[numbers;numbers],2
+exp,power of the base of the natural logarithm,exp[numbers],2
+first,first item,first[any],2
+freq,frequency count,freq[list],2
+in,test if items in the list,in[items;list],2
+key,key of a dict,key[sym|dict],2
+last,last item,last[x],2
+log,natural logarithm,log[numbers],2
+mavg,moving average,mavg[int;numbers],2
+max,maximum,max[numbers|characters|temporals],2
+med,median,med[numbers],2
+meta,metadata for a table,meta[table],2
+min,minimum,min[numbers|characters|temporals],2
+mod,modulus,mod[divisors;dividends],2
+msum,moving sums,msum[int;numbers|characters|temporals],2
+prm,permutation,prm[number],2
+rand,pick randomly,rand[number]|rand[list],2
+rank,position in the sorted list,rank[list],2
+sin,sine,sin[numbers],2
+sqr,square,sqr[numbers],2
+sqrt,square root,sqrt[numbers],2
+sum,total,sum[numbers],2
+sums,running sums,sums[numbers],2
+top,maximum index,top[list],2
+unkey,remove key,unkey[dict|table],2
+var,variance,var[numbers],2
+within,check bounds,within[list;range],2

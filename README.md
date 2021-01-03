@@ -13,7 +13,7 @@ This extension provides [shakti-k9](https://shakti.sh/) language support of vers
 -   [ ] server explorer
 -   [ ] query grid powered by [ag-grid-community](https://www.ag-grid.com/)
 -   [ ] query virtualization powered by [perspective](https://perspective.finos.org/)
--   [ ] language server powered by [tree-sitter](https://tree-sitter.github.io/tree-sitter/)
+-   [x] language server powered by [tree-sitter](https://tree-sitter.github.io/tree-sitter/)
     -   rename symbol (F2)
     -   go to definition (F12)
     -   go to reference (Shift+F12)
@@ -21,13 +21,22 @@ This extension provides [shakti-k9](https://shakti.sh/) language support of vers
     -   document highlight
     -   document symbol (Ctrl+Shift+O)
     -   completion
-        -   identifiers defined in code
-        -   identifiers defined on shakti process
-        -   column names define on shakti process
-    -   completion resolve
     -   signature help
+        -   identifiers defined in code
 
 See the [change log](https://github.com/jshinonome/vscode-k9/blob/master/CHANGELOG.md).
+
+## Configurations
+
+-   To configure globally, type <kbd>ctrl</kbd>+<kbd>,</kbd> to open Settings and change the following values.
+-   To configure for workspace, type <kbd>ctrl</kbd>+<kbd>shift</kbd>+<kbd>p</kbd>, call `Preferences: Open Workspace Settings` and change the following values.
+
+| configuration                      | type   | default value                    | description                                |
+| ---------------------------------- | ------ | -------------------------------- | ------------------------------------------ |
+| k-server.sourceFiles.globsPattern  | array  | `["**/src/**/*.k"]`              | source folder to be included               |
+| k-server.sourceFiles.ignorePattern | array  | `["**/build","**/node_modules"]` | folder to be excluded                      |
+| k-client.terminal.qBinary          | string | `k`                              | k executable file or full path             |
+| k-client.terminal.envPath          | string | ``                               | environment file relative or absolute path |
 
 ## Shortcuts
 

@@ -147,7 +147,7 @@
 				},
 				{
 					"name": "constant.other.name.k",
-					"match": "`(:[a-zA-Z\\d_\\.:/]*|[a-zA-Z\\d\\.:]*)"
+					"match": "`[a-zA-Z\\d\\.:]*"
 				},
 				{
 					"name": "constant.other.cmd.k",

@@ -47,49 +47,49 @@ const clientConf = {
     },
 };
 
-// const serverConf = {
-//     target: 'node',
+const serverConf = {
+    target: 'node',
 
-//     node: {
-//         __dirname: false,
-//         __filename: false,
-//     },
+    node: {
+        __dirname: false,
+        __filename: false,
+    },
 
-//     entry: {
-//         server: './src/server/server.ts',
-//     },
+    entry: {
+        server: './src/server/server.ts',
+    },
 
-//     output: {
-//         path: path.resolve(__dirname, 'dist'),
-//         filename: 'server.js',
-//         libraryTarget: 'commonjs2',
-//     },
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'server.js',
+        libraryTarget: 'commonjs2',
+    },
 
-//     devtool: 'source-map',
-//     externals: {
-//         vscode: 'commonjs vscode'
-//     },
-//     resolve: {
-//         extensions: ['.ts', '.js']
-//     },
-//     module: {
-//         rules: [
-//             {
-//                 test: /\.ts$/,
-//                 exclude: /node_modules/,
-//                 use: [
-//                     {
-//                         loader: 'ts-loader',
-//                         options: {
-//                             compilerOptions: {
-//                                 'sourceMap': true,
-//                             }
-//                         }
-//                     }
-//                 ]
-//             }
-//         ]
-//     }
-// };
+    devtool: 'source-map',
+    externals: {
+        vscode: 'commonjs vscode'
+    },
+    resolve: {
+        extensions: ['.ts', '.js']
+    },
+    module: {
+        rules: [
+            {
+                test: /\.ts$/,
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: 'ts-loader',
+                        options: {
+                            compilerOptions: {
+                                'sourceMap': true,
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+};
 
-module.exports = [clientConf];
+module.exports = [clientConf, serverConf];
