@@ -103,7 +103,7 @@
 				},
 				{
 					"name": "support.constant.time.k",
-					"match": "\\.z\\.[mdhrstuv]\\b"
+					"match": "\\.z\\.[dt]\\b"
 				},
 				{
 					"name": "support.function.io.k",
@@ -139,11 +139,11 @@
 				},
 				{
 					"name": "constant.numeric.decimal.k",
-					"match": "(?x)-?(?:\n  (?:(?<=\\b|_)[0-9]+(\\.)[0-9]*e-?[0-9]+)|   # 1.1e3\n  (?:(?<=\\b|_)[0-9]+(\\.)e-?[0-9]+)|         # 1.e3\n  (?:(?<=\\B|_)(\\.)[0-9]+e-?[0-9]+)|         # .1e3\n  (?:(?<=\\b|_)[0-9]+e-?[0-9]+)|             # 1e3\n  (?:(?<=\\b|_)[0-9]+(\\.)[0-9]+)|            # 1.1\n  (?:(?<=\\B|_)(\\.)[0-9]+)|                  # .1\n  (?:(?<=\\b|_)[0-9]+[ghij]?)                # 1ghij\n)"
+					"match": "(?x)((?<=[^a-zA-Z0-9])-)?(?:\n  (?:(?<=\\b|_)[0-9]+(\\.)[0-9]*e-?[0-9]+)|   # 1.1e3\n  (?:(?<=\\b|_)[0-9]+(\\.)e-?[0-9]+)|         # 1.e3\n  (?:(?<=\\B|_)(\\.)[0-9]+e-?[0-9]+)|         # .1e3\n  (?:(?<=\\b|_)[0-9]+e-?[0-9]+)|             # 1e3\n  (?:(?<=\\b|_)[0-9]+(\\.)[0-9]+)|            # 1.1\n  (?:(?<=\\B|_)(\\.)[0-9]+)|                  # .1\n  (?:(?<=\\b|_)[0-9]+)                       # 1ghij\n)"
 				},
 				{
 					"name": "support.type.k",
-					"match": "`[cnifdt](?=[\\$\\s])"
+					"match": "`[cnifdthrsv](?=[\\$\\s])"
 				},
 				{
 					"name": "constant.other.name.k",
@@ -159,7 +159,7 @@
 			"patterns": [
 				{
 					"name": "keyword.operator.k",
-					"match": "(?<=\\b|_)(abs|sin|cos|exp|log|sqr|sqrt|div|mod|bar|rank|top|freq|bin|within|in|msum|mavg|key|unkey|meta|prm|cmb|sums|deltas|count|first|last|sum|min|max|avg|var|dev|med|key|unkey|meta|in|bin|within|rand|differ)\\b"
+					"match": "(?<=\\b|_)(abs|avg|bar|bin|cos|count|deltas|dev|differ|div|dot|exp|first|in|last|log|max|meta|min|mod|sin|sqr|sqrt|sum|var|within)\\b"
 				},
 				{
 					"name": "keyword.control.k",

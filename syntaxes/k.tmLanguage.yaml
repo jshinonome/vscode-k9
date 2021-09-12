@@ -49,7 +49,7 @@ repository:
       - name: support.function.name.k
         match: '`(js|csv|nv)(?=[\?\s])'
       - name: support.constant.time.k
-        match: \.z\.[mdhrstuv]\b
+        match: \.z\.[dt]\b
       - name: support.function.io.k
         match: (?<=\b|_)(0:|1:|2:|3:|4:|5:)
       - name: constant.language.null.k
@@ -68,17 +68,17 @@ repository:
         match: (?<=\b|_)([\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12})
       - name: constant.numeric.decimal.k
         match: |-
-          (?x)-?(?:
+          (?x)((?<=[^a-zA-Z0-9])-)?(?:
             (?:(?<=\b|_)[0-9]+(\.)[0-9]*e-?[0-9]+)|   # 1.1e3
             (?:(?<=\b|_)[0-9]+(\.)e-?[0-9]+)|         # 1.e3
             (?:(?<=\B|_)(\.)[0-9]+e-?[0-9]+)|         # .1e3
             (?:(?<=\b|_)[0-9]+e-?[0-9]+)|             # 1e3
             (?:(?<=\b|_)[0-9]+(\.)[0-9]+)|            # 1.1
             (?:(?<=\B|_)(\.)[0-9]+)|                  # .1
-            (?:(?<=\b|_)[0-9]+[ghij]?)                # 1ghij
+            (?:(?<=\b|_)[0-9]+)                       # 1ghij
           )
       - name: support.type.k
-        match: '`[cnifdt](?=[\$\s])'
+        match: '`[cnifdthrsv](?=[\$\s])'
       - name: constant.other.name.k
         match: '`[a-zA-Z\d\.:]*'
       - name: constant.other.cmd.k
@@ -86,11 +86,11 @@ repository:
   keywords:
     patterns:
       - name: keyword.operator.k
-        match: (?<=\b|_)(abs|sin|cos|exp|log|sqr|sqrt|div|mod|bar|rank|top|freq|bin|within|in|msum|mavg|key|unkey|meta|prm|cmb|sums|deltas|count|first|last|sum|min|max|avg|var|dev|med|key|unkey|meta|in|bin|within|rand|differ)\b
+        match: (?<=\b|_)(abs|avg|bar|bin|cos|count|deltas|dev|differ|div|dot|exp|first|in|last|log|max|meta|min|mod|sin|sqr|sqrt|sum|var|within)\b
       - name: keyword.control.k
         match: \$(?=\[)
       - name: keyword.assign.k
-        match: ':'
+        match: ":"
       - name: keyword.iterator.k
         match: (':?|\\:?|/:?)
       - name: keyword.other.DML.k
