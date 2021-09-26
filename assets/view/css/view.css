@@ -1,0 +1,32 @@
+.button-black {
+    background-color: black;
+    border-color: black;
+}
+
+.button-black.button-clear,
+.button-black.button-outline {
+    background-color: transparent;
+    color: black;
+}
+.button-black.button-clear {
+    border-color: transparent;
+}
+
+select {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+option {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+label {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.border-right {
+    border-right: 0.1rem solid #9b4dca;
+}

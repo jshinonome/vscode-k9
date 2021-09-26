@@ -1,0 +1,47 @@
+.button-outline {
+    border-color: #ea80fc;
+}
+
+.button.button-outline {
+    color: #ea80fc;
+}
+
+.button-black {
+    background-color: white;
+    border-color: white;
+}
+
+.button-black.button-clear,
+.button-black.button-outline {
+    background-color: transparent;
+    color: white;
+}
+.button-black.button-clear {
+    border-color: transparent;
+}
+
+select {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: white;
+    background-color: var(--vscode-editor-background);
+}
+
+option {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+label {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: white;
+}
+
+input {
+    color: white;
+}
+
+.border-right {
+    border-right: 0.1rem solid #ea80fc;
+}

@@ -46,7 +46,149 @@
                 "path": "./syntaxes/k.tmLanguage.json"
             }
         ],
+        "viewsContainers": {
+            "activitybar": [
+                {
+                    "id": "k9-panel",
+                    "title": "k9",
+                    "icon": "assets/svg/panel.svg"
+                }
+            ]
+        },
+        "views": {
+            "k9-panel": [
+                {
+                    "id": "k9-processes",
+                    "name": "Process List",
+                    "contextualTitle": "Processes"
+                },
+                {
+                    "id": "k9-history",
+                    "name": "Query History",
+                    "contextualTitle": "Query History"
+                }
+            ]
+        },
         "commands": [
+            {
+                "command": "k9-client.refreshEntry",
+                "title": "Refresh k9 Process List",
+                "category": "shakti-k9",
+                "icon": {
+                    "light": "assets/svg/light/refresh.svg",
+                    "dark": "assets/svg/dark/refresh.svg"
+                }
+            },
+            {
+                "command": "k9-client.addEntry",
+                "title": "Add k9 Process",
+                "category": "shakti-k9",
+                "icon": {
+                    "light": "assets/svg/light/add.svg",
+                    "dark": "assets/svg/dark/add.svg"
+                }
+            },
+            {
+                "command": "k9-client.editEntry",
+                "title": "Edit k9 Process",
+                "category": "shakti-k9",
+                "icon": {
+                    "light": "assets/svg/light/edit.svg",
+                    "dark": "assets/svg/dark/edit.svg"
+                }
+            },
+            {
+                "command": "k9-client.deleteEntry",
+                "title": "Delete k9 Process",
+                "category": "shakti-k9",
+                "icon": {
+                    "light": "assets/svg/light/trash.svg",
+                    "dark": "assets/svg/dark/trash.svg"
+                }
+            },
+            {
+                "command": "k9-client.connectEntry",
+                "title": "Connect to k9 Process",
+                "category": "shakti-k9"
+            },
+            {
+                "command": "q-history.rerun",
+                "title": "Rerun History",
+                "category": "shakti-k9",
+                "icon": {
+                    "light": "assets/svg/light/run.svg",
+                    "dark": "assets/svg/dark/run.svg"
+                }
+            },
+            {
+                "command": "k9-client.toggleLimitQuery",
+                "title": "Toggle Unlimited Query",
+                "category": "shakti-k9",
+                "icon": {
+                    "light": "assets/svg/light/flame.svg",
+                    "dark": "assets/svg/dark/flame.svg"
+                }
+            },
+            {
+                "command": "k9-client.queryCurrentLine",
+                "title": "Query Current Line",
+                "category": "shakti-k9"
+            },
+            {
+                "command": "k9-client.querySelection",
+                "title": "Query Current Selection",
+                "category": "shakti-k9"
+            },
+            {
+                "command": "k9-client.abortQuery",
+                "title": "Abort Current Query",
+                "category": "shakti-k9"
+            },
+            {
+                "command": "k9-client.switchMode",
+                "title": "Switch Query Mode",
+                "category": "shakti-k9",
+                "icon": {
+                    "light": "assets/svg/light/gear.svg",
+                    "dark": "assets/svg/dark/gear.svg"
+                }
+            },
+            {
+                "command": "k9-client.importProcesses",
+                "title": "Import Process List",
+                "category": "shakti-k9",
+                "icon": {
+                    "light": "assets/svg/light/import.svg",
+                    "dark": "assets/svg/dark/import.svg"
+                }
+            },
+            {
+                "command": "k9-client.exportProcesses",
+                "title": "Export Process List",
+                "category": "shakti-k9",
+                "icon": {
+                    "light": "assets/svg/light/export.svg",
+                    "dark": "assets/svg/dark/export.svg"
+                }
+            },
+            {
+                "command": "k9-client.reactions",
+                "title": "Raise an Issue",
+                "category": "shakti-k9",
+                "icon": {
+                    "light": "assets/svg/light/reactions.svg",
+                    "dark": "assets/svg/dark/reactions.svg"
+                }
+            },
+            {
+                "command": "k9-client.tagEntry",
+                "title": "Tag a Server",
+                "category": "shakti-k9",
+                "icon": {
+                    "light": "assets/svg/light/tag.svg",
+                    "dark": "assets/svg/dark/tag.svg"
+                }
+            },
             {
                 "command": "k9-client.terminal.sendCurrentLine",
                 "title": "Send Current Line to Terminal",
@@ -60,7 +202,7 @@
             {
                 "command": "k9-client.terminal.run",
                 "title": "Run q File in Terminal",
-                "category": "kdb+/q ext",
+                "category": "shakti-k9",
                 "icon": {
                     "light": "assets/svg/light/debug-start.svg",
                     "dark": "assets/svg/dark/debug-start.svg"
@@ -68,6 +210,60 @@
             }
         ],
         "menus": {
+            "view/title": [
+                {
+                    "command": "k9-client.addEntry",
+                    "when": "view == k9-processes",
+                    "group": "navigation@0"
+                },
+                {
+                    "command": "k9-client.importProcesses",
+                    "when": "view == k9-processes",
+                    "group": "navigation@1"
+                },
+                {
+                    "command": "k9-client.exportProcesses",
+                    "when": "view == k9-processes",
+                    "group": "navigation@2"
+                },
+                {
+                    "command": "k9-client.refreshEntry",
+                    "when": "view == k9-processes",
+                    "group": "navigation@3"
+                },
+                {
+                    "command": "k9-client.toggleLimitQuery",
+                    "when": "view == k9-processes",
+                    "group": "navigation@4"
+                },
+                {
+                    "command": "k9-client.switchMode",
+                    "when": "view == k9-processes",
+                    "group": "navigation@5"
+                },
+                {
+                    "command": "k9-client.reactions",
+                    "when": "view == k9-processes",
+                    "group": "navigation@6"
+                }
+            ],
+            "view/item/context": [
+                {
+                    "command": "k9-client.editEntry",
+                    "when": "view == k9-processes && viewItem == k9-process",
+                    "group": "inline"
+                },
+                {
+                    "command": "k9-client.deleteEntry",
+                    "when": "view == k9-processes && viewItem == k9-process",
+                    "group": "inline"
+                },
+                {
+                    "command": "k9-client.tagEntry",
+                    "when": "view == k9-processes && viewItem == k9-process",
+                    "group": "inline"
+                }
+            ],
             "editor/title": [
                 {
                     "command": "k9-client.terminal.run",
@@ -144,23 +340,25 @@
         "@types/klaw": "^3.0.2",
         "@types/picomatch": "^2.2.6",
         "@typescript-eslint/eslint-plugin": "^4.31.0",
-        "path": "^0.12.7",
-        "vscode-languageclient": "^7.0.0",
-        "vscode-languageserver": "^7.0.0",
-        "vscode-languageserver-textdocument": "^1.0.1",
-        "vscode-uri": "^3.0.2",
-        "web-tree-sitter": "^0.19.4",
         "csv-parser": "^3.0.0",
         "eslint": "^7.32.0",
         "fuse.js": "^6.4.6",
         "graceful-fs": "^4.2.8",
+        "jk9": "file:jk9-1.0.0.tgz",
         "klaw": "^3.0.0",
+        "moment": "^2.29.1",
+        "path": "^0.12.7",
         "picomatch": "^2.3.0",
-        "moment": "^2.29.1"
+        "vscode-languageclient": "^7.0.0",
+        "vscode-languageserver": "^7.0.0",
+        "vscode-languageserver-textdocument": "^1.0.1",
+        "vscode-uri": "^3.0.2",
+        "web-tree-sitter": "^0.19.4"
     },
     "devDependencies": {
         "@types/node": "^16.9.1",
         "@types/vscode": "^1.60.0",
+        "dayjs": "^1.10.7",
         "ts-loader": "^9.2.5",
         "typescript": "^4.4.3",
         "vscode-test": "^1.6.1",
