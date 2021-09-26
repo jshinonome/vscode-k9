@@ -7,8 +7,8 @@
 
 import { MarkdownString, TreeItem, TreeItemCollapsibleState } from 'vscode';
 import { kAttributeMap, kTypeName } from '../util/k-map';
-import QDictTreeItem from './q-dict';
-import { setCommand } from './q-utils';
+import QDictTreeItem from './dict';
+import { setCommand } from './utils';
 import path = require('path');
 
 type Meta = {

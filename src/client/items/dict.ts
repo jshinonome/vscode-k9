@@ -8,10 +8,10 @@
 import * as fs from 'fs';
 import { commands, Event, EventEmitter, TextDocumentContentChangeEvent, TreeDataProvider, TreeItem, TreeItemCollapsibleState, window } from 'vscode';
 import { ProcessManager } from '../modules/process-manager';
-import QFunctionTreeItem from './q-function';
-import QTableTreeItem from './q-table';
-import { setCommand } from './q-utils';
-import QVarTreeItem from './q-var';
+import QFunctionTreeItem from './function';
+import QTableTreeItem from './table';
+import { setCommand } from './utils';
+import QVarTreeItem from './var';
 import path = require('path');
 
 const qTypeMap = new Map<number, string>([

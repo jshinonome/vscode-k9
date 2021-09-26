@@ -28,7 +28,7 @@ export class StatusBarManager {
         context.subscriptions.push(this.queryModeStatusBar);
         this.queryModeStatusBar.color = this.isLightTheme ? '#E65100' : '#FFAB40';
         this.queryModeStatusBar.command = 'k9-client.switchMode';
-        this.queryModeStatusBar.text = '<k9' + ProcessManager.queryMode;
+        this.queryModeStatusBar.text = '<k9 ' + ProcessManager.queryMode;
         this.queryModeStatusBar.show();
 
         this.queryStatusBar = window.createStatusBarItem(StatusBarAlignment.Left, 93);

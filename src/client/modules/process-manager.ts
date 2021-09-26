@@ -6,7 +6,7 @@
  */
 
 import * as fs from 'fs';
-import KConnection from 'jk9';
+import { KConnection } from 'jk9';
 import { homedir } from 'os';
 import { commands, Uri, window, workspace } from 'vscode';
 import HistoryTreeItem from '../items/history';
@@ -106,8 +106,8 @@ export class ProcessManager {
                         this.sync(query);
                     }
                 } else {
-                    process.auth().then(serverCfg => {
-                        const k = new KConnection(serverCfg);
+                    process.auth().then(processCfg => {
+                        const k = new KConnection(processCfg);
                         k.addListener('error', (err: Error) => {
                             if (err) window.showErrorMessage(err.message);
                         });
@@ -115,16 +115,16 @@ export class ProcessManager {
                         k.connect(() => {
                             process.setConn(k);
                             this.activeServer = process;
+                            commands.executeCommand('k9-client.refreshEntry');
                             if (query) {
                                 this.sync(query);
                             }
                         });
                     }).catch(reason => console.log(reason));
-
                 }
             }
         } catch (error) {
-            window.showErrorMessage(`Failed to connect to '${uniqLabel}', please check q-server-cfg.json`);
+            window.showErrorMessage(`Failed to connect to '${uniqLabel}', please check ${cfgPath}`);
         }
     }
 

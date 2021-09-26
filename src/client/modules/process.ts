@@ -5,13 +5,13 @@
  * https://opensource.org/licenses/MIT
  */
 
-import KConnection from 'jk9';
+import { KConnection } from 'jk9';
 import { Command, extensions, TreeItem, TreeItemCollapsibleState, window } from 'vscode';
-import { ProcessCfg as ServerCfg, ProcessManager } from './process-manager';
+import { ProcessCfg as processCfg, ProcessManager } from './process-manager';
 import path = require('path');
 
 const customizedAuthExtension = extensions.getExtension('jshinonome.vscode-q-auth');
-let customizedAuth = (qcfg: ServerCfg) => new Promise(resolve => resolve(qcfg));
+let customizedAuth = (qcfg: processCfg) => new Promise(resolve => resolve(qcfg));
 
 customizedAuthExtension?.activate().then(_ => {
     customizedAuth = customizedAuthExtension.exports.auth;
@@ -36,7 +36,7 @@ export class Process extends TreeItem {
     useCustomizedAuth: boolean;
     public static customizedAuthInstalled = false;
 
-    constructor(cfg: ServerCfg, conn: KConnection | undefined = undefined) {
+    constructor(cfg: processCfg, conn: KConnection | undefined = undefined) {
         super(cfg['label'], TreeItemCollapsibleState.None);
         this.host = ('host' in cfg) ? cfg['host'] : 'localhost';
         if (~'port' in cfg) {
@@ -64,10 +64,10 @@ export class Process extends TreeItem {
         this.connection = conn;
     }
 
-    auth(): Promise<ServerCfg> {
+    auth(): Promise<processCfg> {
         if (this.useCustomizedAuth && Process.customizedAuthInstalled) {
             if (customizedAuthExtension && customizedAuthExtension.isActive) {
-                return customizedAuth(this) as Promise<ServerCfg>;
+                return customizedAuth(this) as Promise<processCfg>;
             } else {
                 window.showWarningMessage('Customized Auth Plug-in(jshinonome.vscode-k9-auth) is not found or not activated yet');
                 return Promise.reject(new Error('Customized Auth Plug-in(jshinonome.vscode-k9-auth) Not Found'));

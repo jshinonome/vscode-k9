@@ -274,6 +274,14 @@
         },
         "keybindings": [
             {
+                "command": "k9-client.queryCurrentLine",
+                "key": "ctrl+enter"
+            },
+            {
+                "command": "k9-client.querySelection",
+                "key": "ctrl+e"
+            },
+            {
                 "command": "k9-client.terminal.sendCurrentLine",
                 "key": "ctrl+shift+enter"
             },

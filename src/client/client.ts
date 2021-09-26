@@ -232,6 +232,40 @@ export function activate(context: ExtensionContext): void {
         })
     );
 
+    context.subscriptions.push(
+        commands.registerCommand('k9-client.queryCurrentLine', async () => {
+            if (window.activeTextEditor) {
+                const n = window.activeTextEditor.selection.active.line;
+                const query = window.activeTextEditor.document.lineAt(n).text;
+                if (query) {
+                    try {
+                        commands.getCommands().then(cmd => {
+                            if (cmd.includes('not.exist')) {
+                                commands.executeCommand('not.exist');
+                            } else {
+                                window.showErrorMessage('Command not.exist does not exist');
+                            }
+                        });
+                    } catch (error) {
+                        console.log(error);
+                    }
+                    ProcessManager.current?.sync(query);
+                }
+            }
+        })
+    );
+
+    context.subscriptions.push(
+        commands.registerCommand('k9-client.querySelection', () => {
+            const query = window.activeTextEditor?.document.getText(
+                new Range(window.activeTextEditor.selection.start, window.activeTextEditor.selection.end)
+            );
+            if (query) {
+                ProcessManager.current?.sync(query);
+            }
+        })
+    );
+
     // k9 language server
     const k9ls = path.join(context.extensionPath, 'dist', 'server.js');
 
