@@ -9,8 +9,8 @@ This extension provides [shakti-k9](https://shakti.sh/) language support of vers
 ## Features
 
 -   [x] k syntaxes
--   [ ] server list group by tags
--   [ ] server explorer
+-   [x] process list group by tags
+-   [ ] process explorer
 -   [ ] query grid powered by [ag-grid-community](https://www.ag-grid.com/)
 -   [ ] query virtualization powered by [perspective](https://perspective.finos.org/)
 -   [x] language server powered by [tree-sitter](https://tree-sitter.github.io/tree-sitter/)
