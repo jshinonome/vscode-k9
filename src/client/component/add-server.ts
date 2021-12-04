@@ -130,7 +130,7 @@ export class AddServer implements Disposable {
         // And the uri we use to load this script in the webview
         const dirUri = webview.asWebviewUri(dir);
         let template = fs.readFileSync(
-            path.join(this._extensionPath, templatePath, 'add-server.html')).toString();
+            path.join(this._extensionPath, templatePath, 'add-process.html')).toString();
         const customizedAuthInstalled = Process.customizedAuthInstalled ? 'checked' : 'disabled';
         template = template.replace(/{assets}/g, dirUri.toString())
             .replace(/{theme}/g, this._theme)

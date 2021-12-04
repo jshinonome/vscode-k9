@@ -29,8 +29,7 @@ export class Process extends TreeItem {
     connection?: KConnection;
     command?: Command;
     flipTables = false;
-    // kdb+ version
-    version = 3.0;
+    version = 2.0;
     tags: string;
     uniqLabel: string;
     useCustomizedAuth: boolean;
@@ -77,9 +76,18 @@ export class Process extends TreeItem {
         }
     }
 
+    loadWrappers(): void {
+        // define unlimited query wrapper
+        this.connection?.sync('qU:{r:. x;$[`A=@r;`t`r`m`k!(1b;r;meta r;());`t`r!(0b;r)]}',
+            (err: Error, _: string) => (console.log('failed to define qU:' + err)));
+        // define limited query wrapper
+        this.connection?.sync('qL:{r:. x;$[`A=@r;`t`r`m`k!(1b;(1000&#r)#r;meta r;());`t`r!(0b;r)]}',
+            (err: Error, _: string) => (console.log('failed to define qL:' + err)));
+    }
+
     // @ts-ignore
     get iconPath(): { light: string, dark: string } {
-        if (ProcessManager.current?.activeServer?.uniqLabel === this.uniqLabel) {
+        if (ProcessManager.current?.activeProcess?.uniqLabel === this.uniqLabel) {
             return {
                 light: path.join(__filename, '../../assets/svg/light/cpu-active.svg'),
                 dark: path.join(__filename, '../../assets/svg/dark/cpu-active.svg')

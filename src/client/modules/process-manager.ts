@@ -26,7 +26,7 @@ export class ProcessManager {
     processPool = new Map<string, Process>();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     processCfg: ProcessCfg[] = [];
-    activeServer: Process | undefined;
+    activeProcess: Process | undefined;
     isBusy = false;
     busyConn: Process | undefined = undefined;
     queryWrapper = '';
@@ -52,17 +52,8 @@ export class ProcessManager {
 
     // when switch a server or toggle query mode, update wrapper
     public updateQueryWrapper(): void {
-        const limit = this.isLimited ? '1000 sublist ' : '';
-        const consoleSize = 'system"c"';
-        const wrapper = ProcessManager.consoleMode
-            ? `{\`t\`r!(0b;.Q.S[${consoleSize};0j;value x])}`
-            : `{res:value x;$[(count res) & .Q.qt res;:\`t\`r\`m\`k!(1b;${limit}0!res;0!meta res;keys res);99h=type res;\`t\`r\`m\`k!(1b;${limit}0!res;0!meta res:{([]k:.Q.s1 each key x;v:.Q.s1 each value x)}res;());:\`t\`r!(0b;.Q.S[${consoleSize};0j;res])]}`;
-        if (this.activeServer && this.activeServer.version < 3.5)
-            this.queryWrapper = wrapper;
-        else
-            this.queryWrapper = `{{-105!(x;enlist y;{\`t\`r!(0b;"ERROR\n",x,"\n",.Q.sbt@(-3)_y)})}[${wrapper};x]}`;
+        this.queryWrapper = this.isLimited ? 'qL' : 'qU';
     }
-
 
     public toggleLimitQuery(): void {
         this.isLimited = !this.isLimited;
@@ -97,7 +88,7 @@ export class ProcessManager {
             if (process) {
                 const connection = process.connection;
                 if (connection) {
-                    this.activeServer = process;
+                    this.activeProcess = process;
                     StatusBarManager.updateConnStatus(uniqLabel);
                     commands.executeCommand('k9-client.refreshEntry');
                     commands.executeCommand('q-explorer.refreshEntry');
@@ -114,7 +105,8 @@ export class ProcessManager {
                         k.addListener('close', () => this.removeServer(uniqLabel));
                         k.connect(() => {
                             process.setConn(k);
-                            this.activeServer = process;
+                            process.loadWrappers();
+                            this.activeProcess = process;
                             commands.executeCommand('k9-client.refreshEntry');
                             if (query) {
                                 this.sync(query);
@@ -131,7 +123,7 @@ export class ProcessManager {
     sync(query: string): void {
         if (this.isBusy) {
             window.showWarningMessage('Still executing last query');
-        } else if (this.activeServer) {
+        } else if (this.activeProcess) {
             if (query.slice(-1) === ';') {
                 query = query.slice(0, -1);
             } else if (query[0] === '`') {
@@ -139,13 +131,13 @@ export class ProcessManager {
                 query = query + ' ';
             }
             this.isBusy = true;
-            this.busyConn = this.activeServer;
+            this.busyConn = this.activeProcess;
             StatusBarManager.toggleQueryStatus(this.isBusy);
-            const uniqLabel = this.activeServer?.uniqLabel;
+            const uniqLabel = this.activeProcess?.uniqLabel;
             const time = Date.now();
             const timestamp = new Date();
             // query wrapper is not supported on k9 side yet
-            this.activeServer?.connection?.sync(query,
+            this.activeProcess?.connection?.sync(this.queryWrapper, query,
                 (err: Error, res: any) => {
                     this.isBusy = false;
                     this.busyConn = undefined;
@@ -157,12 +149,8 @@ export class ProcessManager {
                             { uniqLabel: uniqLabel, time: timestamp, duration: duration, query: query, errorMsg: err.message });
                     }
                     if (res) {
-                        if (typeof res.r === 'string' && res.r.startsWith('ERROR')) {
-                            const msg: string[] = res.r.split('\n');
-                            QueryConsole.current?.appendError(msg, duration, uniqLabel, query);
-                            HistoryTreeItem.appendHistory({ uniqLabel: uniqLabel, time: timestamp, duration: duration, query: query, errorMsg: res.r });
-                        } else if (ProcessManager.consoleMode) {
-                            QueryConsole.current?.append(res.r, duration, uniqLabel, query);
+                        if (ProcessManager.consoleMode) {
+                            QueryConsole.current?.append(JSON.stringify(res.r), duration, uniqLabel, query);
                             HistoryTreeItem.appendHistory({ uniqLabel: uniqLabel, time: timestamp, duration: duration, query: query, errorMsg: '' });
                         } else {
                             if (res.t) {
@@ -196,7 +184,7 @@ export class ProcessManager {
 
     static polling(query: string): void {
         const current = ProcessManager.current;
-        if (current && !current.isBusy && current.activeServer) {
+        if (current && !current.isBusy && current.activeProcess) {
             if (query.slice(-1) === ';') {
                 query = query.slice(0, -1);
             } else if (query[0] === '`') {
@@ -204,11 +192,11 @@ export class ProcessManager {
                 query = query + ' ';
             }
             current.isBusy = true;
-            current.busyConn = current.activeServer;
+            current.busyConn = current.activeProcess;
             StatusBarManager.toggleQueryStatus(current.isBusy);
-            const uniqLabel = current.activeServer?.uniqLabel;
+            const uniqLabel = current.activeProcess?.uniqLabel;
             const time = Date.now();
-            current.activeServer?.connection?.sync(current.queryWrapper, query,
+            current.activeProcess?.connection?.sync(current.queryWrapper, query,
                 (err: Error, res: any) => {
                     current.isBusy = false;
                     current.busyConn = undefined;
@@ -225,10 +213,14 @@ export class ProcessManager {
                             current.stopPolling();
                         } else {
                             if (res.t) {
+                                const meta = {
+                                    c: Object.keys(res.m),
+                                    t: Object.values(res.m)
+                                };
                                 current.update({
                                     type: 'json',
                                     data: res.r,
-                                    meta: res.m,
+                                    meta: meta,
                                     keys: res.k,
                                 });
                                 QueryConsole.current?.append(`> ${res.r[Object.keys(res.r)[0]].length} row(s) returned`, duration, uniqLabel, query);
@@ -401,8 +393,8 @@ export class ProcessManager {
     removeServer(uniqLabel: string): void {
         const server = this.getProcess(uniqLabel);
         server?.setConn(undefined);
-        if (this.activeServer?.uniqLabel === uniqLabel) {
-            this.activeServer = undefined;
+        if (this.activeProcess?.uniqLabel === uniqLabel) {
+            this.activeProcess = undefined;
             StatusBarManager.updateConnStatus(undefined);
         }
         commands.executeCommand('k9-client.refreshEntry');

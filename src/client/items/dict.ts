@@ -102,12 +102,12 @@ export default class QDictTreeItem extends TreeItem
         if (this._parent) {
             return;
         }
-        const conn = ProcessManager.current?.activeServer?.connection;
+        const conn = ProcessManager.current?.activeProcess?.connection;
         const query = fs.readFileSync(path.join(__filename, '../../assets/source/query-server-variables.q'), 'utf8');
         if (conn) {
             conn.sync(query, (err: Error, res: any) => {
                 if (err) {
-                    window.showErrorMessage(`Unable to fetch variables from ${ProcessManager.current?.activeServer?.label}`);
+                    window.showErrorMessage(`Unable to fetch variables from ${ProcessManager.current?.activeProcess?.label}`);
                 }
                 if (res) {
                     // name, type, body, parent, cols

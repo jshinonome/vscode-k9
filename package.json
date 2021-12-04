@@ -22,7 +22,8 @@
     "icon": "icon.png",
     "main": "./dist/client.js",
     "activationEvents": [
-        "onLanguage:k"
+        "onLanguage:k",
+        "onView:k9-panel"
     ],
     "contributes": {
         "languages": [
