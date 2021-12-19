@@ -23,7 +23,7 @@
     "main": "./dist/client.js",
     "activationEvents": [
         "onLanguage:k",
-        "onView:k9-panel"
+        "onView:k9-processes"
     ],
     "contributes": {
         "languages": [
