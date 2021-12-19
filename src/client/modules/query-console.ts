@@ -36,7 +36,7 @@ export class QueryConsole {
         if (QueryConsole.current) {
             QueryConsole.current._console.show(true);
         } else {
-            const _console = window.createOutputChannel('q Console');
+            const _console = window.createOutputChannel('k Console');
             _console.show(true);
             QueryConsole.current = new QueryConsole(_console);
         }
