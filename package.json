@@ -10,7 +10,7 @@
     "homepage": "https://github.com/jshinonome/vscode-k9",
     "publisher": "jshinonome",
     "engines": {
-        "vscode": "^1.63.1"
+        "vscode": "^1.63.2"
     },
     "repository": {
         "type": "git",
