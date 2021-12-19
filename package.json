@@ -318,6 +318,12 @@
                     ],
                     "description": "Pattern to be excluded"
                 },
+                "k9-client.queryGrid.decimals": {
+                    "scope": "resource",
+                    "type": "number",
+                    "default": 3,
+                    "description": "Decimals of q Grid"
+                },
                 "k9-client.terminal.kBinary": {
                     "scope": "resource",
                     "type": "string",

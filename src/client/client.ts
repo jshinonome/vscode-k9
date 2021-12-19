@@ -18,6 +18,8 @@ import { ProcessTree } from './modules/process-tree';
 import { StatusBarManager } from './modules/status-bar-manager';
 import { runSourceFile, sendToCurrentTerm } from './modules/terminal';
 import path = require('path');
+import { QueryView } from './component/query-view';
+import { QueryGrid } from './component/query-grid';
 
 export function activate(context: ExtensionContext): void {
     // extra language configurations
@@ -78,6 +80,8 @@ export function activate(context: ExtensionContext): void {
     history.refresh();
 
     AddServer.setExtensionPath(context.extensionPath);
+    QueryView.setExtensionPath(context.extensionPath);
+    QueryGrid.setExtensionPath(context.extensionPath);
 
     // <-- configuration
     const queryMode = workspace.getConfiguration().get('k9-client.queryMode');
@@ -167,7 +171,7 @@ export function activate(context: ExtensionContext): void {
     commands.registerCommand(
         'k9-client.switchMode',
         async () => {
-            const mode = await window.showQuickPick(['Console', 'Grid', 'Virtualization'],
+            const mode = await window.showQuickPick(['Console', 'Grid'],
                 { placeHolder: 'Please choose a query mode from the list below' });
             if (mode) {
                 window.showInformationMessage(`Switch to Query ${mode} Mode`);
@@ -238,17 +242,6 @@ export function activate(context: ExtensionContext): void {
                 const n = window.activeTextEditor.selection.active.line;
                 const query = window.activeTextEditor.document.lineAt(n).text;
                 if (query) {
-                    try {
-                        commands.getCommands().then(cmd => {
-                            if (cmd.includes('not.exist')) {
-                                commands.executeCommand('not.exist');
-                            } else {
-                                window.showErrorMessage('Command not.exist does not exist');
-                            }
-                        });
-                    } catch (error) {
-                        console.log(error);
-                    }
                     ProcessManager.current?.sync(query);
                 }
             }

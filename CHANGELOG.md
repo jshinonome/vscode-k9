@@ -2,6 +2,12 @@
 
 All notable changes to the "vscode-k9" extension will be documented in this file.
 
+## 1.0.0
+
+### added
+
+-   query grid
+
 ## 0.1.0
 
 ### added

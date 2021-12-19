@@ -20,18 +20,9 @@ type formatter = (value: any) => any;
 const decimals = workspace.getConfiguration().get('k9-client.queryGrid.decimals') as number;
 export const kdbTypeMap = new Map<string, formatter>([
     ['b', (value) => value ? '1b' : '0b'],
-    ['x', (value) => '0x' + value],
-    ['h', (value) => value + 'h'],
-    ['e', (value) => value ? value.toFixed(decimals) : value],
     ['f', (value) => value ? value.toFixed(decimals) : value],
     // Nanoseconds is not native supported in javascript
-    ['p', (value) => dayjs.utc(value).format('YYYY-MM-DD[T]HH:mm:ss.SSS')],
-    ['m', (value) => dayjs.utc(value).format('YYYY-MM')],
     ['d', (value) => dayjs.utc(value).format('YYYY-MM-DD')],
-    ['z', (value) => dayjs.utc(value).format('YYYY-MM-DD[T]HH:mm:ss.SSS')],
-    ['n', (value) => dayjs.utc(value).format('HH:mm:ss.SSS')],
-    ['u', (value) => dayjs.utc(value).format('HH:mm')],
-    ['v', (value) => dayjs.utc(value).format('HH:mm:ss')],
     ['t', (value) => dayjs.utc(value).format('HH:mm:ss.SSS')],
     [' ', (value) => JSON.stringify(value)]
 ]);
@@ -59,7 +50,6 @@ export class QueryGrid implements Disposable {
         const extensionPath = QueryGrid.extensionPath;
         // const column = window.activeTextEditor ? window.activeTextEditor.viewColumn : undefined;
         if (QueryGrid.currentPanel) {
-            QueryGrid.currentPanel._panel.reveal();
             return QueryGrid.currentPanel;
         }
 
@@ -141,7 +131,7 @@ export class QueryGrid implements Disposable {
             let labelCol = '';
             result.cols = result.meta.c.map((col: string, i: number) => {
                 const colDef: { headerName: string, field: string, type?: string, cellStyle?: { 'background-color': string } } = { headerName: col, field: col };
-                if ('xhijef'.includes(result.meta.t[i])) {
+                if ('ghijf'.includes(result.meta.t[i])) {
                     colDef.type = 'numericColumn';
                     numericCols.push(result.meta.c[i]);
                 } else if (!labelCol) {

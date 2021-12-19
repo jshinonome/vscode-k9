@@ -78,11 +78,17 @@ export class Process extends TreeItem {
 
     loadWrappers(): void {
         // define unlimited query wrapper
-        this.connection?.sync('qU:{r:. x;$[`A=@r;`t`r`m`k!(1b;r;meta r;());`t`r!(0b;r)]}',
-            (err: Error, _: string) => (console.log('failed to define qU:' + err)));
+        this.connection?.sync('qU:{r:. x;$[`A=@r;`t`r`m`k!(1;r;`c`t!. meta r;());`t`r!(0;r)]}',
+            (err: Error, _: string) => {
+                if (err)
+                    console.log('failed to define qU:' + err);
+            });
         // define limited query wrapper
-        this.connection?.sync('qL:{r:. x;$[`A=@r;`t`r`m`k!(1b;(1000&#r)#r;meta r;());`t`r!(0b;r)]}',
-            (err: Error, _: string) => (console.log('failed to define qL:' + err)));
+        this.connection?.sync('qL:{r:. x;$[`A=@r;`t`r`m`k!(1;(1000&#r)#r;`c`t!. meta r;());`t`r!(0;r)]}',
+            (err: Error, _: string) => {
+                if (err)
+                    console.log('failed to define qU:' + err);
+            });
     }
 
     // @ts-ignore

@@ -52,7 +52,7 @@ export class ProcessManager {
 
     // when switch a server or toggle query mode, update wrapper
     public updateQueryWrapper(): void {
-        this.queryWrapper = this.isLimited ? 'qL' : 'qU';
+        this.queryWrapper = this.isLimited ? '`qL' : '`qU';
     }
 
     public toggleLimitQuery(): void {

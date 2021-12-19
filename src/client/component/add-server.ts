@@ -36,7 +36,6 @@ export class AddServer implements Disposable {
         const extensionPath = AddServer.extensionPath;
         // const column = window.activeTextEditor ? window.activeTextEditor.viewColumn : undefined;
         if (AddServer.currentPanel) {
-            AddServer.currentPanel._panel.reveal();
             return AddServer.currentPanel;
         }
 

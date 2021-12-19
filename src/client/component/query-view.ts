@@ -42,7 +42,6 @@ export class QueryView implements Disposable {
         const extensionPath = QueryView.extensionPath;
         // const column = window.activeTextEditor ? window.activeTextEditor.viewColumn : undefined;
         if (QueryView.currentPanel) {
-            QueryView.currentPanel._panel.reveal();
             return QueryView.currentPanel;
         }
 
