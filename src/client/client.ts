@@ -295,17 +295,13 @@ export function activate(context: ExtensionContext): void {
         clientOptions
     );
 
-    // Push the disposable to the context's subscriptions so that the
-    // client can be deactivated on extension deactivation
-    context.subscriptions.push(client.start());
-
     // context.subscriptions.push(
     //     commands.registerCommand('k-servers.sendServerCache', code => {
     //         client.sendNotification('$/analyze-server-cache', code);
     //     })
     // );
 
-    client.onReady().then(() => {
+    client.start().then(() => {
         const cfg = workspace.getConfiguration('k9-server.sourceFiles');
         client.sendNotification('$/analyze-source-code', { globsPattern: cfg.get('globsPattern'), ignorePattern: cfg.get('ignorePattern') });
     });
